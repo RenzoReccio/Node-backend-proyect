@@ -1,7 +1,7 @@
 var Restaurant = require('../models/restaurant.models')
 
 exports.save = (req, res) => {
-    if(!req.body.name || req.body.type){
+    if(!req.body.name || !req.body.type){
         res.status(400).send({
             message : "Send some information"
         })
@@ -34,18 +34,20 @@ exports.listAll = (req, res) => {
 }
 
 exports.listByName = (req, res) => {
+    console.log(req.body)
     if(!req.body.name){
         res.status(400).send({
             message : "A name must be given"
         })
     }
 
-    Restaurant.find({type: req.body.name}).then(data =>{
+    Restaurant.find({name: req.body.name}).then(data =>{
         if(!data){
             res.status(404).send({
                 message : "There is no restaurarants  with name:" + req.body.name 
             })
         }
+        res.send(data)
     })
 }
 
