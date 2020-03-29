@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose')
-var indexRouter = require('./routes/index');
 var restRouter = require('./routes/restaurant.routes');
 var commentRouter = require('./routes/comments.routes')
 
@@ -22,7 +21,6 @@ mongoose.connect(process.env.MONGO_URI, {
     useUnifiedTopology: true
   });
 
-app.use('/', indexRouter);
 app.use('/api/restaurant', restRouter)
 app.use('api/comment', commentRouter)
 
