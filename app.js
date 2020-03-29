@@ -6,6 +6,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose')
 var indexRouter = require('./routes/index');
 var restRouter = require('./routes/restaurant.routes');
+var commentRouter = require('./routes/comments.routes')
 
 var app = express();
 
@@ -22,6 +23,8 @@ mongoose.connect(process.env.MONGO_URI, {
   });
 
 app.use('/', indexRouter);
-app.use('/api', restRouter)
+app.use('/api/restaurant', restRouter)
+app.use('api/comment', commentRouter)
+
 
 module.exports = app;
