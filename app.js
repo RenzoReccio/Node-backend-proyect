@@ -3,12 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
+var cors = require('cors')
 var restRouter = require('./routes/restaurant.routes');
 var commentRouter = require('./routes/comments.routes')
 
 var app = express();
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -22,7 +24,7 @@ mongoose.connect(process.env.MONGO_URI, {
   });
 
 app.use('/api/restaurant', restRouter)
-app.use('api/comment', commentRouter)
+app.use('/api/comment', commentRouter)
 
 
 module.exports = app;

@@ -35,6 +35,7 @@ exports.listbyResturantId = (req, res) => {
                 message : "No comments in the restaurant"
             })
         }
+        res.send(data)
     }).catch( err => {
         res.status(500).send({
             message : err.message || "An error ocurred in the server"
